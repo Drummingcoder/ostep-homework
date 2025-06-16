@@ -1,0 +1,152 @@
+1. 
+Time     PID: 0     PID: 1        CPU        IOs
+  1     RUN:cpu      READY          1
+  2     RUN:cpu      READY          1
+  3     RUN:cpu      READY          1
+  4     RUN:cpu      READY          1
+  5     RUN:cpu      READY          1
+  6        DONE    RUN:cpu          1
+  7        DONE    RUN:cpu          1
+  8        DONE    RUN:cpu          1
+  9        DONE    RUN:cpu          1
+ 10        DONE    RUN:cpu          1
+
+ CPU utilization would be 100% or 10 because there are two processes that constantly need the CPU to run.
+
+ 2. 
+ Time     PID: 0     PID: 1        CPU        IOs
+  1     RUN:cpu      RUN:io         1          1
+  2     RUN:cpu     BLOCKED         1          1
+  3     RUN:cpu     BLOCKED         1          1
+  4     RUN:cpu     BLOCKED         1          1
+  5        DONE     BLOCKED                    1
+  6        DONE     BLOCKED                    1
+  7        DONE     RUN:io-done                1
+  
+  It takes 7 to complete both processes.
+  Wrong, correct answer was 11:
+  
+Time     PID: 0     PID: 1        CPU        IOs
+  1     RUN:cpu      READY         1          
+  2     RUN:cpu      READY         1               
+  3     RUN:cpu      READY         1               
+  4     RUN:cpu      READY         1               
+  5        DONE      RUN:io        1           
+  6        DONE      BLOCKED                  1
+  7        DONE      BLOCKED                  1
+  8        DONE      BLOCKED                  1
+  9        DONE      BLOCKED                  1
+  10       DONE      BLOCKED                  1
+  11       DONE      RUN:io-done   1
+
+3. 
+Time     PID: 0     PID: 1        CPU        IOs
+  1      RUN:io      READY         1          
+  2     BLOCKED      RUN:cpu       1          1    
+  3     BLOCKED      RUN:cpu       1          1    
+  4     BLOCKED      RUN:cpu       1          1    
+  5     BLOCKED      RUN:cpu       1          1 
+  6     BLOCKED      DONE                     1
+  7 RUN:io-done      DONE          1
+
+  It only takes 7 because the CPU process (1) runs during the I/O get (0), so it runs faster.
+
+  4. It will take 11 steps because the CPU process waits for the I/O to finish.
+Time     PID: 0     PID: 1        CPU        IOs
+  1      RUN:io      READY         1          
+  2     BLOCKED      READY                    1    
+  3     BLOCKED      READY                    1    
+  4     BLOCKED      READY                    1    
+  5     BLOCKED      READY                    1 
+  6     BLOCKED      READY                    1
+  7 RUN:io-done      READY         1
+  8     DONE         RUN:cpu       1
+  9     DONE         RUN:cpu       1
+  10    DONE         RUN:cpu       1
+  11    DONE         RUN:cpu       1
+
+5. It runs like answer 3, it takes 7 steps
+Time     PID: 0     PID: 1        CPU        IOs
+  1      RUN:io      READY         1          
+  2     BLOCKED      RUN:cpu       1          1    
+  3     BLOCKED      RUN:cpu       1          1    
+  4     BLOCKED      RUN:cpu       1          1    
+  5     BLOCKED      RUN:cpu       1          1 
+  6     BLOCKED      DONE                     1
+  7 RUN:io-done      DONE          1
+
+6. 
+Time     PID: 0     PID: 1        PID: 2      CPU        IOs
+  1      RUN:io      READY         READY       1 
+  2     BLOCKED      RUN:cpu       READY       1          1    
+  3     BLOCKED      RUN:cpu       READY       1          1    
+  4     BLOCKED      RUN:cpu       READY       1          1    
+  5     BLOCKED      RUN:cpu       READY       1          1 
+  6     BLOCKED      RUN:cpu       READY       1          1
+  7       READY      DONE          RUN:cpu     1
+  8       READY      DONE          RUN:cpu     1
+  9       READY      DONE          RUN:cpu     1
+  10      READY      DONE          RUN:cpu     1
+  11      READY      DONE          RUN:cpu     1
+  12 RUN:io-done     DONE          DONE        1
+  13     RUN:io      DONE          DONE        1  
+  14    BLOCKED      DONE          DONE                   1    
+  15    BLOCKED      DONE          DONE                   1    
+  16    BLOCKED      DONE          DONE                   1    
+  17    BLOCKED      DONE          DONE                   1 
+  18    BLOCKED      DONE          DONE                   1
+  19 RUN:io-done     DONE          DONE        1
+  20     RUN:io      DONE          DONE        1  
+  21    BLOCKED      DONE          DONE                   1    
+  22    BLOCKED      DONE          DONE                   1    
+  23    BLOCKED      DONE          DONE                   1    
+  24    BLOCKED      DONE          DONE                   1 
+  25    BLOCKED      DONE          DONE                   1
+  26 RUN:io-done     DONE          DONE        1
+
+The IO waits until the other two processes are done to begin running again,
+which isn't efficient because the IO can run while the CPU is, but it doesn't.
+
+7. The IO can run immediately, allowing it to run IO while the CPU is running
+and therefore becoming more efficient.
+
+Time     PID: 0     PID: 1        PID: 2      CPU        IOs
+  1      RUN:io      READY         READY       1 
+  2     BLOCKED      RUN:cpu       READY       1          1    
+  3     BLOCKED      RUN:cpu       READY       1          1    
+  4     BLOCKED      RUN:cpu       READY       1          1    
+  5     BLOCKED      RUN:cpu       READY       1          1 
+  6     BLOCKED      RUN:cpu       READY       1          1
+  7 RUN:io-done      DONE          READY       1
+  8      RUN:io      DONE          READY       1
+  9     BLOCKED      DONE          RUN:cpu     1          1
+  10    BLOCKED      DONE          RUN:cpu     1          1
+  11    BLOCKED      DONE          RUN:cpu     1          1
+  12    BLOCKED      DONE          RUN:cpu     1          1
+  13    BLOCKED      DONE          RUN:cpu     1          1
+  14 RUN:io-done     DONE          DONE        1               
+  15     RUN:io      DONE          DONE        1             
+  16    BLOCKED      DONE          DONE                   1    
+  17    BLOCKED      DONE          DONE                   1 
+  18    BLOCKED      DONE          DONE                   1
+  19    BLOCKED      DONE          DONE                   1
+  20    BLOCKED      DONE          DONE                   1  
+  21 RUN:io-done     DONE          DONE        1    
+
+8.
+Time     PID: 0     PID: 1        CPU        IOs
+  1     RUN:cpu      READY         1          
+  2     RUN:io       READY         1               
+  3     BLOCKED      RUN:cpu       1          1    
+  4     BLOCKED      RUN:cpu       1          1    
+  5     BLOCKED      RUN:cpu       1          1 
+  6     BLOCKED      DONE                     1
+  7     BLOCKED      DONE                     1
+  8  RUN:io-done     DONE          1
+  9     RUN:io       DONE          1
+  10    BLOCKED      DONE                     1
+  11    BLOCKED      DONE                     1
+  12    BLOCKED      DONE                     1
+  13    BLOCKED      DONE                     1
+  14    BLOCKED      DONE                     1
+  15 RUN:io-done     DONE          1

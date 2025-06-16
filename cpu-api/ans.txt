@@ -1,0 +1,90 @@
+1. 
+Process Tree:
+a
+└── b
+
+a
+├── b
+└── c
+
+a
+└── b
+
+a
+├── b
+└── d
+
+a
+├── b
+├── d
+└── e
+
+2. As the fork percentage increases, there will be a lot more branches and more complex trees.
+However, as it decreases, the branches would be less complex.
+
+3. Seed 7:
+a forks b
+a forks c
+b forks d
+c forks e
+c forks f
+
+Seed 69:
+a forks b
+b forks c
+c forks d
+d EXITS
+c forks e
+
+4. After the exit, all the children connected to fork c should be gone as fork c exits.
+However, the children of fork c simply become children of the root fork (fork a).
+If you use the -R flag, the children of fork c become the children of the parent fork of the 
+fork that exited (which is fork b).
+
+5. Fork 3:
+a
+├── b
+|   ├── c
+|   └── f
+└── d
+    └── e
+
+Fork 11:
+a
+└── b
+    ├── c
+    ├── d
+    |   └── e
+    └── f
+
+6. Seed 19:
+a forks b
+b forks c
+c forks d
+a forks e
+b forks f
+
+Seed 20:
+a forks b
+b EXITS
+a forks c
+c forks d
+a forks e
+
+Seed 25:
+a forks b
+b EXITS
+a forks c
+a forks d
+c forks e
+
+Seed 74 (wrong):
+a forks b
+b EXITS
+a forks c
+c EXITS
+a forks d
+
+When a fork exits, it's hard to tell when exactly the fork exited, so exit cases are hard to tell
+exactly when a fork exits. When a fork is created is easy to pinpoint and put down, and when
+no forks exited, it's easy to give the list of actions accurately.
