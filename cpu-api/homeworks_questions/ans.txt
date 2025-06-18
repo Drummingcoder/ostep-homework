@@ -1,0 +1,27 @@
+1. The value in the child process is the same as the variable when it was set. When the child changes 
+the variable, it appears that the value of the variable for the parent doesn't change. This
+is because the child and parent don't actually share the same memory, but have copies of the same
+variables. Therefore, the variable in the child and parent may be set to different values.
+
+2. Not exactly, because when the child reads the process, the parent gets the file descriptor whose file
+stream is at the end of the file, so unless the parent resets the file descriptor, it can't
+use it (it can still access it). When both processes try to write to the file at the same time, 
+it's random which line appears first in the file. Either the child runs first or the parent, but
+it's random. 
+
+3. You can call sleep(1);
+
+4. There are many variations of the same call because each one offers a different way to pass arguments,
+a different way to search for the file to execute, whether or not to provide a custom envr, or all of 
+the above. Providing all this helps programming be flexible in their thinking.
+
+5. Wait returns the pid of the process that died (which allowed the parent to keep running). If you 
+use wait in the child process, the compiler would simply run past it and ignore it.
+
+6. waitpid() is useful when you want to wait for a specific child to die or add options to the way you are
+checking on the child process.
+
+7. The child simply can't print to the terminal (and the program moves on), 
+while the parent can continue to do so.
+
+8. 
