@@ -23,5 +23,3 @@ checking on the child process.
 
 7. The child simply can't print to the terminal (and the program moves on), 
 while the parent can continue to do so.
-
-8. 
