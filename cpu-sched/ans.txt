@@ -1,0 +1,35 @@
+1. FIFO: 
+Response time: (0 + 100 + 200) / 3 = 100
+Turnaround time: (100 + 200 + 300) / 3 = 200
+
+SJF:
+Response time: (0 + 100 + 200) / 3 = 100
+Turnaround time: (100 + 200 + 300) / 3 = 200
+
+2. Used flag -l 300,200,100
+FIFO:
+Response time: (0 + 300 + 500) / 3 = 266.67
+Turnaround time: (300 + 500 + 600) / 3 = 466.67
+
+SJF: 
+Response time: (0 + 100 + 300) / 3 = 133.33
+Turnaround time: (100 + 300 + 600) / 3 = 333.33
+
+3. 
+RR:
+Response time: (0 + 1 + 2) / 3 = 1
+Turnaround time: (598 + 599 + 600) / 3 = 599 \\wrong
+
+Real turnaround time: (300 + 500 + 600) / 3 = 466.67
+
+4. SJF will deliver the same results as FIFO when the longest task comes last and the shortest ones comes
+first, like with "-l 100,200,300", SJF and FIFO will have the same results.
+
+5. SJF will deliver the same results as RR if the quantum time of the RR is the same or longer than the 
+time of the longest process and the process arrive in an order of shortest first and longest last.
+
+6. Response time with SJF as job length increase will dramatically increase. If all jobs were the same
+length and each job time went from 10 to 100, response time would increase from 10 to 100.
+
+7. As quantum lengths increase, the response time would also increase to be the same as the quantum length.
+The equation for this would be avg response time = quantum length.
