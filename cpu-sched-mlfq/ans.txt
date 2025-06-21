@@ -1,0 +1,60 @@
+1. Using ./mlfq.py -j 2 -n 2 -m 15 -M 0
+
+Seed 2: 
+[ time 0 ] JOB BEGINS by JOB 0
+[ time 0 ] JOB BEGINS by JOB 1
+[ time 0 ] Run JOB 0 at PRIORITY 1 [ TICKS 9 ALLOT 1 TIME 13 (of 14) ]
+[ time 1 ] Run JOB 0 at PRIORITY 1 [ TICKS 8 ALLOT 1 TIME 12 (of 14) ]
+[ time 2 ] Run JOB 0 at PRIORITY 1 [ TICKS 7 ALLOT 1 TIME 11 (of 14) ]
+[ time 3 ] Run JOB 0 at PRIORITY 1 [ TICKS 6 ALLOT 1 TIME 10 (of 14) ]
+[ time 4 ] Run JOB 0 at PRIORITY 1 [ TICKS 5 ALLOT 1 TIME 9  (of 14) ]
+[ time 5 ] Run JOB 0 at PRIORITY 1 [ TICKS 4 ALLOT 1 TIME 8  (of 14) ]
+[ time 6 ] Run JOB 0 at PRIORITY 1 [ TICKS 3 ALLOT 1 TIME 7  (of 14) ]
+[ time 7 ] Run JOB 0 at PRIORITY 1 [ TICKS 2 ALLOT 1 TIME 6  (of 14) ]
+[ time 8 ] Run JOB 0 at PRIORITY 1 [ TICKS 1 ALLOT 1 TIME 5  (of 14) ]
+[ time 9 ] Run JOB 0 at PRIORITY 1 [ TICKS 0 ALLOT 1 TIME 4  (of 14) ]
+[ time 10 ] Run JOB 1 at PRIORITY 1 [ TICKS 9 ALLOT 1 TIME 0  (of 1) ]
+[ time 11 ] FINISHED JOB 1
+[ time 11 ] Run JOB 0 at PRIORITY 0 [ TICKS 9 ALLOT 1 TIME 3  (of 14) ]
+[ time 12 ] Run JOB 0 at PRIORITY 0 [ TICKS 8 ALLOT 1 TIME 2  (of 14) ]
+[ time 13 ] Run JOB 0 at PRIORITY 0 [ TICKS 7 ALLOT 1 TIME 1  (of 14) ]
+[ time 14 ] Run JOB 0 at PRIORITY 0 [ TICKS 6 ALLOT 1 TIME 0  (of 14) ]
+[ time 15 ] FINISHED JOB 0
+
+Seed 3: 
+[ time 0 ] JOB BEGINS by JOB 0
+[ time 0 ] JOB BEGINS by JOB 1
+[ time 0 ] Run JOB 0 at PRIORITY 1 [ TICKS 9 ALLOT 1 TIME 3 (of 4) ]
+[ time 1 ] Run JOB 0 at PRIORITY 1 [ TICKS 8 ALLOT 1 TIME 2 (of 4) ]
+[ time 2 ] Run JOB 0 at PRIORITY 1 [ TICKS 7 ALLOT 1 TIME 1 (of 4) ]
+[ time 3 ] Run JOB 0 at PRIORITY 1 [ TICKS 6 ALLOT 1 TIME 0 (of 4) ]
+[ time 4 ] FINISHED JOB 0
+[ time 4 ] Run JOB 1 at PRIORITY 1 [ TICKS 9 ALLOT 1 TIME 5  (of 6) ] \\Wrong at first, put it at time 5
+[ time 5 ] Run JOB 1 at PRIORITY 1 [ TICKS 8 ALLOT 1 TIME 4  (of 6) ]
+[ time 6 ] Run JOB 1 at PRIORITY 1 [ TICKS 7 ALLOT 1 TIME 3  (of 6) ]
+[ time 7 ] Run JOB 1 at PRIORITY 1 [ TICKS 6 ALLOT 1 TIME 2  (of 6) ]
+[ time 8 ] Run JOB 1 at PRIORITY 1 [ TICKS 5 ALLOT 1 TIME 1  (of 6) ]
+[ time 9 ] Run JOB 1 at PRIORITY 1 [ TICKS 4 ALLOT 1 TIME 0  (of 6) ]
+[ time 10 ] FINISHED JOB 1
+
+2. Example 1: ./mlfq.py --jlist 0,200,0 -n 3 -q 10 -a 1
+Example 2: ./mlfq.py --jlist 0,200,0:100,20,0 -n 3 -q 10 -a 1
+Example 3: ./mlfq.py --jlist 0,200,0:50,20,1 -n 3 -q 10 -a 1 -S
+Example 4 (Figure 8.4 left): ./mlfq.py --jlist 0,200,0:100,50,1:100,50,1 -n 3 -q 10 -a 1 -S -i 1
+Example 5 (Figure 8.4 right): ./mlfq.py --jlist 0,200,0:100,50,1:100,50,1 -n 3 -q 10 -a 1 -S -i 1 -B 100
+Example 6 (Figure 8.5 left): ./mlfq.py --jlist 0,200,0:50,150,9 -n 3 -q 10 -a 1 -S -i 1
+Example 7 (Figure 8.5 right): ./mlfq.py --jlist 0,200,0:50,150,9 -n 3 -q 10 -a 1 -i 1
+Example 8 (Figure 8.6): ./mlfq.py --jlist 0,150,0:0,150,0 -n 3 -Q 10,20,40 -a 2
+
+3. There would only be one queue.
+./mlfq.py -n 1 -q 10
+
+4. ./mlfq.py --jlist 0,200,0:50,150,9 -n 3 -q 10 -a 1 -S -i 1
+
+5. If the allotment is 1, then 10*20 = 200 ms. You would have to boost the job every 200 ms.
+
+6. If the -I flag isn't there, the I/O gets added to the back, meaning that within the same priority,
+the I/O execution has to wait for the running (long) process to use up its quantum length before
+it can run (and send another I/O), leading to longer turnaround time. If the -I flag is there, 
+the I/O gets added to the front, allowing the I/O process to interrupt the long process and 
+send another I/O, leading to shorter turnaround time.
