@@ -1,0 +1,87 @@
+1. Seed 1:
+84+25+44 = 153
+Random 651593 -> Winning ticket 119 (of 153) -> Run 2
+  Jobs:  (  job:0 timeleft:1 tix:84 ) ( job:1 timeleft:7 tix:25 ) (* job:2 timeleft:4 tix:44 )
+Random 788724 -> Winning ticket 9 (of 153) -> Run 0
+  Jobs:  (*  job:0 timeleft:1 tix:84 ) ( job:1 timeleft:7 tix:25 ) ( job:2 timeleft:3 tix:44 )
+--> JOB 0 DONE at time 2
+Random 93859 -> Winning ticket 19 (of 69) -> Run 1
+  Jobs:  (  job:0 timeleft:0 tix:-- ) (* job:1 timeleft:7 tix:25 ) ( job:2 timeleft:3 tix:44 )
+Random 28347 -> Winning ticket 57 (of 69) -> Run 2
+  Jobs:  (  job:0 timeleft:0 tix:-- ) ( job:1 timeleft:6 tix:25 ) (* job:2 timeleft:3 tix:44 )
+Random 835765 -> Winning ticket 37 (of 69) -> Run 2
+  Jobs:  (  job:0 timeleft:0 tix:-- ) ( job:1 timeleft:6 tix:25 ) (* job:2 timeleft:2 tix:44 )
+Random 432767 -> Winning ticket 68 (of 69) -> Run 2
+  Jobs:  (  job:0 timeleft:0 tix:-- ) ( job:1 timeleft:6 tix:25 ) (* job:2 timeleft:1 tix:44 )
+--> JOB 2 DONE at time 6
+Random 762280 -> Winning ticket 5 (of 25) -> Run 1
+  Jobs:  (  job:0 timeleft:0 tix:-- ) (* job:1 timeleft:6 tix:25 ) ( job:2 timeleft:0 tix:-- )
+Random 2106 -> Winning ticket 6 (of 25) -> Run 1
+  Jobs:  (  job:0 timeleft:0 tix:-- ) (* job:1 timeleft:5 tix:25 ) ( job:2 timeleft:0 tix:-- )
+Random 445387 -> Winning ticket 12 (of 25) -> Run 1
+  Jobs:  (  job:0 timeleft:0 tix:-- ) (* job:1 timeleft:4 tix:25 ) ( job:2 timeleft:0 tix:-- )
+Random 721540 -> Winning ticket 15 (of 25) -> Run 1
+  Jobs:  (  job:0 timeleft:0 tix:-- ) (* job:1 timeleft:3 tix:25 ) ( job:2 timeleft:0 tix:-- )
+Random 228762 -> Winning ticket 12 (of 25) -> Run 1
+  Jobs:  (  job:0 timeleft:0 tix:-- ) (* job:1 timeleft:2 tix:25 ) ( job:2 timeleft:0 tix:-- )
+Random 945271 -> Winning ticket 21 (of 25) -> Run 1
+  Jobs:  (  job:0 timeleft:0 tix:-- ) (* job:1 timeleft:1 tix:25 ) ( job:2 timeleft:0 tix:-- )
+--> JOB 1 DONE at time 12
+
+Seed 2: 94+73+30 = 197 \\Decided to limit length to 5
+Random 605944 -> Winning ticket 169 (of 197) -> Run 2
+  Jobs:  (  job:0 timeleft:4 tix:94 ) ( job:1 timeleft:4 tix:73 ) (* job:2 timeleft:3 tix:30 )
+Random 606802 -> Winning ticket 42 (of 197) -> Run 0
+  Jobs:  (*  job:0 timeleft:4 tix:94 ) ( job:1 timeleft:4 tix:73 ) ( job:2 timeleft:2 tix:30 )
+Random 581204 -> Winning ticket 54 (of 197) -> Run 0
+  Jobs:  (*  job:0 timeleft:3 tix:94 ) ( job:1 timeleft:4 tix:73 ) ( job:2 timeleft:2 tix:30 )
+Random 158383 -> Winning ticket 192 (of 197) -> Run 2
+  Jobs:  (  job:0 timeleft:2 tix:94 ) ( job:1 timeleft:4 tix:73 ) (* job:2 timeleft:2 tix:30 )
+Random 430670 -> Winning ticket 28 (of 197) -> Run 0
+  Jobs:  (*  job:0 timeleft:2 tix:94 ) ( job:1 timeleft:4 tix:73 ) ( job:2 timeleft:1 tix:30 )
+Random 393532 -> Winning ticket 123 (of 197) -> Run 1
+  Jobs:  (  job:0 timeleft:1 tix:94 ) (* job:1 timeleft:4 tix:73 ) ( job:2 timeleft:1 tix:30 )
+Random 723012 -> Winning ticket 22 (of 197) -> Run 0
+  Jobs:  (*  job:0 timeleft:1 tix:94 ) ( job:1 timeleft:3 tix:73 ) ( job:2 timeleft:1 tix:30 )
+--> JOB 0 DONE at time 7
+Random 994820 -> Winning ticket 46 (of 103) -> Run 1
+  Jobs:  (  job:0 timeleft:0 tix:-- ) (* job:1 timeleft:3 tix:73 ) ( job:2 timeleft:1 tix:30 )
+Random 949396 -> Winning ticket 45 (of 103) -> Run 1
+  Jobs:  (  job:0 timeleft:0 tix:-- ) (* job:1 timeleft:2 tix:73 ) ( job:2 timeleft:1 tix:30 )
+Random 544177 -> Winning ticket 28 (of 103) -> Run 1
+  Jobs:  (  job:0 timeleft:0 tix:-- ) (* job:1 timeleft:1 tix:73 ) ( job:2 timeleft:1 tix:30 )
+--> JOB 1 DONE at time 10
+Random 444854 -> Winning ticket 14 (of 30) -> Run 2
+  Jobs:  (  job:0 timeleft:0 tix:-- ) ( job:1 timeleft:0 tix:-- ) (* job:2 timeleft:1 tix:30 )
+--> JOB 2 DONE at time 11
+
+Seed 3: 54+60+6 = 120 \\max length is 5
+Random 13168 -> Winning ticket 88 (of 120) -> Run 1
+  Jobs:  (  job:0 timeleft:1 tix:54 ) (* job:1 timeleft:1 tix:60 ) ( job:2 timeleft:3 tix:6 )
+--> JOB 1 DONE at time 1
+Random 837469 -> Winning ticket 49 (of 60) -> Run 0
+  Jobs:  (*  job:0 timeleft:1 tix:54 ) ( job:1 timeleft:0 tix:-- ) ( job:2 timeleft:3 tix:6 )
+--> JOB 0 DONE at time 2
+Random 259354 -> Winning ticket 4 (of 6) -> Run 2
+  Jobs:  (  job:0 timeleft:0 tix:-- ) ( job:1 timeleft:0 tix:-- ) (* job:2 timeleft:3 tix:6 )
+Random 234331 -> Winning ticket 1 (of 6) -> Run 2
+  Jobs:  (  job:0 timeleft:0 tix:-- ) ( job:1 timeleft:0 tix:-- ) (* job:2 timeleft:2 tix:6 )
+Random 995645 -> Winning ticket 5 (of 6) -> Run 2
+  Jobs:  (  job:0 timeleft:0 tix:-- ) ( job:1 timeleft:0 tix:-- ) (* job:2 timeleft:1 tix:6 )
+--> JOB 2 DONE at time 5
+
+2. When the number of tickets is imbalanced, the process with the greater number of tickets always
+gets a chance to run, while the other process is starved. Job 0 never got a chance to run, and
+if it did, it would only run once before job 1 finishes. This ticket imbalance allows the process
+to monopolize the CPU and ensure no other process can run.
+
+3. Seed 1: 4, Seed 2: 10, Seed 3: 4
+Unfairness is around 5 or 6.
+
+4. Seed 2: 10; Seed 3: 10 \\ -q 10
+Seed 1: 3; Seed 2: 6 \\ -q 3
+
+The average unfairness gets bigger, but the average deviation goes down.
+
+5. Yes, with enough time. The fairness chart of a Linux CFS scheduler would be worth exploring.
+The graph with a stride scheduler would probably have a straight line at 1.
