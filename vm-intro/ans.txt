@@ -1,0 +1,25 @@
+1. Checking out man free...
+
+2. Out of the 7938 megabytes total, 1828 megabytes were used and, 197 megabytes are free,
+and 5738 mb are available. These numbers somewhat matched my expectations because I knew that
+used megabytes were going to be less than available ones, but I didn't expect the 197 mb free.
+
+3. Made memory-user.c using copliot
+
+4. The memory usage increases by roughly the same amount of memory that was assigned to the program.
+The numbers do match my expectations as used memory went up, available memory went down. What was 
+interesting is that the free memory was ballooned up instead of just the available memory, as maybe
+since the memory was already allocated, it's free for another process. As I increase the amount of 
+memory used, more and more memory becomes used and less available. If I use too much memory, the
+program is simply terminated.
+
+5. Checking out man pmap...
+
+6. PID of memory-user: 28765 and 31497
+
+7. Besides the code, stack, and heap, there are also the libraries that the code may need
+to run and the different processes that are started up.
+
+8. The stack and the heap pretty much look the same, but the spaces that they take up are much larger
+depending on how much storage it needs. It pretty much matches my expectations because it's the same
+simple program but with more memory used, so it should look the same except for memory space.
