@@ -1,0 +1,26 @@
+1. A segmentation fault occurs and the program is terminated
+
+2. gdb shows me that a segmentation fault happened in null.c at line 6, at the line
+int value = *ptr;. It also shows me which function and the address of the fault.
+
+3. Valgrind attempts to run the code (the null file) and runs into a segmentation fault at line 6.
+It tells me that the heap blocks were all freed, there are no memory leaks, and the program 
+simply failed because of an invalid read.
+
+4. When running in terminal, it runs and terminates normally, and there is no output.
+When running with gdb, the program simply exits and gdb reports that it ran normally.
+Valgrind reports that 1 block of 400 bytes was lost in a memory leak, so there is an error.
+
+5. A write error happens where the program attempts to write beyond the bounds of the array. Using Valgrind,
+we can see that there are no leaks, but an invalid write of size 4 in the main function has happened,
+leading to an error. The program isn't correct.
+
+6. The program can read normally using terminal, but it produces a value of 0 when reading freed
+memory. Valgrind reports that although there are no leaks, an invalid read happened.
+
+7. The program doesn't run and it aborts, giving an error that an invalid pointer was used in the function free().
+No tools are needed for this kind of problem.
+
+8. A vector performs quite well as it's meant to expand and provide room for more data to be input.
+A linked list may not perform as fast because you have to add pointers one by one, but vectors don't
+have to.
