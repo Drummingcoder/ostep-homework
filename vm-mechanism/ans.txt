@@ -1,0 +1,41 @@
+1. Using decimal nums...
+Seed 1: 
+VA 0: SEGMENTATION VIOLATION
+VA 1: VALID: 14145
+VA 2: SEGMENTATION VIOLATION
+VA 3: SEGMENTATION VIOLATION
+VA 4: SEGMENTATION VIOLATION
+
+Seed 2:
+VA 0: VALID: 15586
+VA 1: VALID: 15615
+VA 2: SEGMENTATION VIOLATION
+VA 3: SEGMENTATION VIOLATION
+VA 4: SEGMENTATION VIOLATION
+
+Seed 3:
+VA 0: SEGMENTATION VIOLATION
+VA 1: SEGMENTATION VIOLATION
+VA 2: SEGMENTATION VIOLATION
+VA 3: VALID: 8983
+VA 4: VALID: 8929
+
+2. You would have to set the bounds register to 930, so flag -l 930 would work.
+
+3. Default physical memory size is 16384. Therefore, with a limit of 100, to fit the entire address space
+onto physical memory, the maximum base value is 16284. Any more, and the program will error.
+
+4. With larger address spaces and physical memory, the numbers just get bigger, it's more of the same.
+
+5. Overall a straight line, y = x.
+  0%: 0%
+ 10%: 5%, 15%
+ 20%: 10%, 30%, 20%
+ 30%: 30%, 35%, 25%
+ 40%: 30%, 40%, 50%
+ 50%: 60%, 35%, 60%
+ 60%: 75%, 65%, 60%
+ 70%: 65%, 70%, 65%
+ 80%: 85%, 75%, 65%
+ 90%: 70%, 85%, 100%, 75%
+100%: 100%
