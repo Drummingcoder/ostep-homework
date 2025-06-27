@@ -1,0 +1,38 @@
+1. First command: 
+VA 0: decimal: 108 --> 108-128 = -20; VALID: 492
+VA 1: decimal: 97 --> SEGMENTATION VIOLATION (SEG 1)
+VA 2: decimal: 53 --> SEGMENTATION VIOLATION (SEG 0)
+VA 3: decimal: 33 --> SEGMENTATION VIOLATION (SEG 0)
+VA 4: decimal: 65 --> SEGMENTATION VIOLATION (SEG 1)
+
+Second seed: 
+VA 0: 17 --> VALID: 17
+VA 1: 108 --> 108-128 = -20; VALID: 492
+VA 2: 97 --> SEGMENTATION VIOLATION (SEG 1)
+VA 3: 33 --> SEGMENTATION VIOLATION (SEG 0)
+VA 4: 63 --> SEGMENTATION VIOLATION (SEG 0)
+
+Third seed:
+VA 0: 122 --> 122-128 = -6; VALID: 506
+VA 1: 121 --> 121-128 = -7; VALID: 505
+VA 2: 7 --> VALID: 7
+VA 3: 10 --> VALID: 10
+VA 4: 106 --> 106-128 = -22; SEGMENTATION VIOLATION(SEG 1)
+
+2. The highest legal virtual address in segment 0 is 20. The lowest virtual address in segment 1 is 
+108. The lowest illegal virtual address is 21 and the highest illegal virtual address is 107.
+To test my theory, I would run 
+segmentation.py -a 128 -p 512 -b 0 -l 20 -B 512 -L 20 -A 20,108,21,107 -c
+.
+
+//Wrong, I forgot that addresses start from 0, not 1. In this case, the highest legal address is 19 in
+segment 0, while the lowest illegal address is 20.
+
+3. Base doesn't really matter, but you can set it to 0 for segment 0 and 128 for segment 1. Bounds for
+both should be 2 to get the desired output.
+
+4. To get 90% of virtual addresses to be valid, only 3 of the flags are useful. Address space size
+must be half of physical memory, and the limit (of either side) must be 90% of the available 
+address space. If the address space size was 128, the limit should be 115.
+
+5. Yes, you can just set the limit of both segment 0 and 1 to 0, ensuring no address is valid.
