@@ -1,0 +1,127 @@
+1. 
+ptr[0] = Alloc(3) returned 1000 (searched 1 element)
+List [size 1]: [addr:1003 sz:97]
+
+Free(ptr[0]) returned 0
+List [size 2]: [addr:1000 sz:3] [addr:1003 sz:97]
+
+ptr[1] = Alloc(5) returned 1003 (searched 2 elements)
+List [size 2]: [addr:1000 sz:3] [addr:1008 sz:92]
+
+Free(ptr[1]) returned 0
+List [size 3]: [addr:1000 sz:3] [addr:1003 sz:5] [addr:1008 sz:92]
+
+ptr[2] = Alloc(8) returned 1008 (searched 3 elements)
+List [size 3]: [addr:1000 sz:3] [addr:1003 sz:5] [addr:1016 sz:84]
+
+Free(ptr[2]) returned 0
+List [size 4]: [addr:1000 sz:3] [addr:1003 sz:5] [addr:1008 sz:8] [addr:1016 sz:84]
+
+ptr[3] = Alloc(8) returned 1008 (searched 4 elements)
+List [size 3]: [addr:1000 sz:3] [addr:1003 sz:5] [addr:1016 sz:84]
+
+Free(ptr[3]) returned 0
+List [size 4]: [addr:1000 sz:3] [addr:1003 sz:5] [addr:1008 sz:8] [addr:1016 sz:84]
+
+ptr[4] = Alloc(2) returned 1000 (searched 4 elements)
+List [size 4]: [addr:1002 sz:1] [addr:1003 sz:5] [addr:1008 sz:8] [addr:1016 sz:84]
+
+ptr[5] = Alloc(7) returned 1008 (searched 4 elements)
+List [size 4]: [addr:1002 sz:1] [addr:1003 sz:5] [addr:1015 sz:1] [addr:1016 sz:84]
+
+The free list gets longer and longer over time (but still covers the same amount of memory) and may
+contain a lot of free spaces that are right next to each other but not coalesced.
+
+2. 
+ptr[0] = Alloc(3) returned 1000 (searched 1 element)
+List [size 1]: [addr:1003 sz:97]
+
+Free(ptr[0]) returned 0
+List [size 2]: [addr:1000 sz:3] [addr:1003 sz:97]
+
+ptr[1] = Alloc(5) returned 1003 (searched 2 elements)
+List [size 2]: [addr:1000 sz:3] [addr:1008 sz:92]
+
+Free(ptr[1]) returned 0
+List [size 3]: [addr:1000 sz:3] [addr:1003 sz:5] [addr:1008 sz:92]
+
+ptr[2] = Alloc(8) returned 1008 (searched 3 elements)
+List [size 3]: [addr:1000 sz:3] [addr:1003 sz:5] [addr:1016 sz:84]
+
+Free(ptr[2]) returned 0
+List [size 4]: [addr:1000 sz:3] [addr:1003 sz:5] [addr:1008 sz:8] [addr:1016 sz:84]
+
+ptr[3] = Alloc(8) returned 1016 (searched 4 elements)
+List [size 4]: [addr:1000 sz:3] [addr:1003 sz:5] [addr:1008 sz:8] [addr:1024 sz:76]
+
+Free(ptr[3]) returned 0
+List [size 5]: [addr:1000 sz:3] [addr:1003 sz:5] [addr:1008 sz:8] [addr:1016 sz:8] [addr:1024 sz:76]
+
+ptr[4] = Alloc(2) returned 1024 (searched 5 elements)
+List [size 5]: [addr:1000 sz:3] [addr:1003 sz:5] [addr:1008 sz:8] [addr:1016 sz:8] [addr:1026 sz:74]
+
+ptr[5] = Alloc(7) returned 1026 (searched 5 elements)
+List [size 5]: [addr:1000 sz:3] [addr:1003 sz:5] [addr:1008 sz:8] [addr:1016 sz:8] [addr:1033 sz:67]
+
+The worst-fit policy keeps creating more and more free space entries and is less efficient with the 
+free list unlike best fit. The addresses returned only get higher and higher and it has to search more.
+
+3. 
+ptr[0] = Alloc(3) returned 1000 (searched 1 element)
+List [size 1]: [addr:1003 sz:97]
+
+Free(ptr[0]) returned 0
+List [size 2]: [addr:1000 sz:3] [addr:1003 sz:97]
+
+ptr[1] = Alloc(5) returned 1003 (searched 2 elements)
+List [size 2]: [addr:1000 sz:3] [addr:1008 sz:92]
+
+Free(ptr[1]) returned 0
+List [size 3]: [addr:1000 sz:3] [addr:1003 sz:5] [addr:1008 sz:92]
+
+ptr[2] = Alloc(8) returned 1008 (searched 3 elements)
+List [size 3]: [addr:1000 sz:3] [addr:1003 sz:5] [addr:1016 sz:84]
+
+Free(ptr[2]) returned 0
+List [size 4]: [addr:1000 sz:3] [addr:1003 sz:5] [addr:1008 sz:8] [addr:1016 sz:84]
+
+ptr[3] = Alloc(8) returned 1008 (searched 3 elements)
+List [size 3]: [addr:1000 sz:3] [addr:1003 sz:5] [addr:1016 sz:84]
+
+Free(ptr[3]) returned 0
+List [size 4]: [addr:1000 sz:3] [addr:1003 sz:5] [addr:1008 sz:8] [addr:1016 sz:84]
+
+ptr[4] = Alloc(2) returned 1000 (searched 1 elements)
+List [size 4]: [addr:1002 sz:1] [addr:1003 sz:5] [addr:1008 sz:8] [addr:1016 sz:84]
+
+ptr[5] = Alloc(7) returned 1008 (searched 3 elements)
+List [size 4]: [addr:1002 sz:1] [addr:1003 sz:5] [addr:1015 sz:1] [addr:1016 sz:84]
+
+First fit has to search less than best fit and therefore is faster with the same efficiency.
+
+4. For the FIRST policy, compared to ADDRSORT, SIZESORT+ doesn't make any difference due to the
+operations, but the results can be similar based on how chunks are freed. SIZESORT+ makes sure
+that the smallest chunk possible can be used for the memory to be allocated, like best-fit but 
+without the searching. SIZESORT- however is super inefficient as the biggest chunk is always first 
+will always fit the memory to be allocated, making the free list grow fast.
+
+For the WORST or BEST policy, since it searches through the entire list anyways, ordering the
+list a different way doesn't really matter and therefore, SIZESORT+, SIZESORT-, and ADDRSORT all
+have similar results.
+
+5. With larger allocation requests over time, the free list grows bigger and bigger to large amounts
+of entries even though the memory it's managing hasn't increased. As a result of not coalescing, many
+free spaces are right next to each other but can't hold much on their own, leading to these larger
+allocation requests being rejected even though there's clearly enough space for them. The difference
+in outcome that I see with coalescing is that the free list in smaller and all requests are able to
+be handled. It's also faster. Without the -C flag, the free list got to 50+ entries, but with it, 
+the free list was always less than 6 entries. The ordering of the list still matters if using first-fit
+(but not best or worst fit), but less.
+
+6. When changing the -P to higher than 50 (or nearing 100), the amount of free space decreases over time
+(it can decrease even faster if the -P is higher), meaning that as -P nears 100, more and more requests
+near the end of the command have to be rejected because there is no space left. As -P nears 0, there 
+are barely any spaces being used and the memory is pretty much free all the time.
+
+7. You could do like -A +1,+1,+1,+1,+1,+1,-0,-2,-4 to end up with gaps between the 1-space addresses
+or -A +1,+2,+3,+4,-0,-2...something like that.
