@@ -1,0 +1,23 @@
+1. The page table size as the address space grows should be larger to accommodate bigger 
+and more addresses. More pages would be needed to fill in the address space, so the page
+table must grow. As the page size increases, the page table would grow smaller because
+the pages would take up more space and leave less space for other pages, so there would be
+less entries in the table.
+
+// Observations appear correct
+
+2. As you increase the number of pages available, more and more addresses become valid and
+more memory can be accessed. 
+
+Translation: -P 1k -a 16k -p 32k -v -u 50 -s 2
+VA 390 --> 00007986 (decimal 31110) [VPN 0]
+VA 5327 --> 00004CCF (decimal 19663) [VPN 5]
+VA 2239 --> [VPN 2 not valid]
+VA 8359 --> 00007CA7 (decimal 31911) [VPN 8]
+VA 16362 --> [VPN 15 not valid]
+
+3. The third one is too unrealistic because the small size of the page size compared to the large
+address space generates a large page table that's hard to keep track of.
+
+4. If the address space is larger than the physical memory size, the program errors out. Same if 
+the address space isn't a multiple of the page size (or larger than the address space, for that matter). 

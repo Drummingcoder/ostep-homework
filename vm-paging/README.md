@@ -134,7 +134,3 @@ problems. Run the program with the -h flag to see what options there are:
 * The -n flag can be used to generate more addresses to translate (instead of the default 5).
 * The -u flag changes the fraction of mappings that are valid, from 0% (-u 0) up to 100% (-u 100). The default is 50, which means that roughly 1/2 of the pages in the virtual address space will be valid.
 * The -v flag prints out the VPN numbers to make your life easier.
-
-
-
-
