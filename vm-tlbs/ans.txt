@@ -1,0 +1,16 @@
+1. gettimeofday() is pretty accurate to the microsecond, but it probably needs a couple of seconds (at least 3)
+to time accurately.
+
+2 and 3 done. 
+
+4. Graph: https://www.desmos.com/calculator/8mxxr1eyjq
+
+5. We can use conditional usage of the variable in the loop after the
+loop is executed so that the compiler sees that the variable is needed 
+after the loop and will keep it there.
+
+6. To pin the thread, you need to use the pthreads library and use
+CPU functions to fix the program to the cpu core.
+
+7. No, because I initialized and accessed the array before the test,
+ensuring that the TLB access timing is accurate.
