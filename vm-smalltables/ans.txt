@@ -1,0 +1,54 @@
+Trial 1 (default config: address 0x3da8):
+Binary: 01111 01101 01000
+PDE: 01111 -> entry 15; value: 0xd6
+0xd6 -> 1 1010110 (valid, decimal 86)
+PTE: 01101 -> entry 13; value: 0x7f
+0x7f -> 01111111 (invalid)
+This is a fault...
+
+Trial 2 (default config: address 0x17f5):
+Binary: 00101 11111 10101
+PDE: 00101 -> entry 5; value: 0xd4
+0xd4 -> 1 1010100 (valid, decimal 84)
+PTE: 11111 -> entry 31; value: 0xce
+0xce -> 1 1001110 (valid, decimal 78)
+offset 10101 -> 21
+Physical address: 2496 + 21 = 2517 -> 0x9D5 --> Value: 0x1c
+
+1. You only need one register to access either a two level page table or a three level
+page table. This is because the entries in the upper levels point to the lower levels and
+the virtual address provided points to the entry, so only 1 register is needed.
+
+2. Seed 0, address 611c:
+Binary: 11000 01000 11100
+PDE: 11000 -> entry 24; value: 0xa1
+0xa1 -> 1 0100001 (valid, page 33)
+PTE: 01000 -> entry 8; value: 0xb5
+0xb5 -> 1 0110101 (valid, page 53)
+Offset: 11100 -> 28
+Physical address: 53*32 = 1696+28 = 1724 -> 0x6BC (value: 0x08)
+
+Seed 1, address 6c74:
+Binary: 11011 00011 10100
+PDE: 11011 -> entry 27; value: 0xa0
+0xa0 -> 1 0100000 (valid, page 32)
+PTE: 00011 -> entry 3; value: 0xe1
+0xe1 -> 1 1100001 (valid, page 97)
+Offset: 10100 -> 20
+Physical address: 97*32 = 3104+20 = 3124 -> 0xC34 (value: 0x06)
+
+Seed 2, address 7570:
+Binary: 11101 01011 10000
+PDE: 11101 -> entry 29; value: 0xb3
+0xb3 -> 1 0110011 (valid, page 51)
+PTE: 01011 -> entry 11; value: 0x7f
+0x7f -> 0 1111111 (invalid)
+This is a fault...
+
+3 memory references (assuming no fault) are needed to perform each lookup. The first
+reference is to the page directory, the second to the page table, and the last one
+to the actual address itself.
+
+3. I think memory references in the TLB to the page table would lead to a mix of
+hits and misses. It's particularly useful if the variables to be referenced are in 
+the same page, but if they are all spread out, it would lead to TLB misses.
