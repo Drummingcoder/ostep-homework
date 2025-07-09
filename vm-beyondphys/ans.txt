@@ -1,0 +1,28 @@
+1. The CPU time increases significantly as the user time increases from single digits (from 1 to 7) up
+to double digits (57-68). It makes sense because the CPU constantly has to access memory and update
+the values of the array over and over, causing CPU time to go up. When running another instance of
+./mem, the user time jumps to the 90s, meaning that the CPU has very little time left for system tasks.
+Indeed, the system time and user time seem to always add up to 100. This continues even as another
+instance of ./mem is opened, leading to 100% CPU utilization.
+
+2. When running the mem program, the cache memory significantly decreases as the free memory drops from
+210000 to 160000. However, when stopping the program, instead of return the memory back to the cache,
+the freed up memory returns to the free category, giving numbers of 1220000+ freed memory instead
+of 210000, which is unexpected to me.
+
+3. I have 8129200 kB total memory...equal to 8.192 gb. After running mem 4000, the si and so never give
+non-zero numbers. After trying mem 4500 and mem 4600, the program terminates, and the si and so never
+change. But I can guess that as more memory is allocated, more and more data gets swapped out to the
+disk, in proportion to the amount that's overflowing the physical memory.
+
+4. CPU utilization goes up as user time increases to 50+%, and the block i/o also increases as both
+bi and bo sometimes increases in number.
+
+5. At mem 4000, the first loop takes 725 ms and subsequent loops take from 300-500 ms. First bandwidth
+is 5517 MB/s, while later it's 9000-10000 MB/s. When trying mem 4700, the first loop takes 1022 ms,
+much longer than mem 4000. The bandwidth is also lower and when constantly swapping, the performance
+takes a considerable hit compared to comfortable fitting. The performance of the first loop is always
+worse than subsequent loops, no matter the case.
+
+6. The performance gets worse and worse as memory beyond the swap space is allocated. Around 4700 MB
+is when the allocation starts to fail.
