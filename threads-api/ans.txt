@@ -1,0 +1,35 @@
+1. Helgrind does point to the right lines of code (namely line 8 and 15, where the balance
+variable is being accessed by both threads). It also tells me what locks are held and how
+big the variable involved in the race is.
+
+2. When removing one of the offending lines, helgrind doesn't report any errors. When adding
+a lock around the balance access in the main function, helgrind does say a lock is held, but
+a conflict still occurs. When adding another lock to the created thread, helgrind reports
+no errors.
+
+3. The locks can be placed in different orders and multiple locks can be placed, 
+leading to indeterminate results and errors that may happen. 
+
+4. Helgrind reports multiple errors with incorrect lock order and locks being observed at 
+different places.
+
+5. This other program (main-deadlock-global.c) doesn't have the same problem as the first
+program because as a thread enters the function, they lock other threads out and so the locks
+aren't set in any order using the global lock. However, it looks like Helgrind is reporting
+the same issue and basically the same errors as the previous program. This shows us that
+tools like Helgrind, even if they are very good, their information should still be double-checked
+and no tool is ever perfect.
+
+6. This code is inefficient as the parent spends a long time spinning and wasting CPU cycles, meaning
+that the child doesn't get many CPU cycles to run and therefore makes the parent wait longer
+and the program run longer.
+
+7. It reports a possible data race when the variable done is accessed, as no locks are held.
+The code looks correct though, as if the parent or child runs first, either way still executes
+properly.
+
+8. There's no spinning, so performance is improved. It's also more correct, as the locks ensure that
+no variables are accessed or modified at the same time (although both examples are pretty much
+the same in correctness). Therefore, this example is preferred due to higher correctness and performance.
+
+9. No, helgrind doesn't report any errors.
