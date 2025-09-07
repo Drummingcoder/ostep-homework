@@ -1,0 +1,31 @@
+1. This assembly takes one register, %bx, and increments count according to the number in %bx.
+It does so by looping over and over, increasing count by 1 and decreasing %bx by one until %bx
+reaches 0.
+
+2. flag.s still works with the default values, because even if %bx is negative, the code will always
+run once. The value 0 would end up in flag because both threads will set the flag to 1 to get the
+lock, and then 0 to release it, and since both threads run to completion, flag would be 0.
+
+3. The code would increment the count variable 3 times each, therefore setting count to 6. It would
+not change my answer for number 2 because the lock is still always being released.
+// Wrong, each thread would increment the count variable 2 times each, setting count to 4.
+
+4. bx=10, bx=10
+Any value that allows a thread to run in full, like 11, would produce a good outcome.
+
+5. The lock acquire is written so that the register swaps 1 with the 0 or 1 in mutex atomically. If 
+the register is found to be equal to 0, that means that the lock has been acquire, if it's 1, 
+the lock hasn't been acquired. Lock release is written by simply putting 0 in mutex.
+
+6. The code does, in fact, work as expected due to the proper locking of variables. It does lead
+to some inefficient use of the CPU as the lock fails and the CPU has to repeat instructions. We
+can quantify this as the number of failed lock attempts times the number of instructions that has
+to be executed to recover.
+
+7. The right thing does in fact happen, as the second thread loops. We should also test other edge
+cases, like when the lock is just released, can it be acquired right away?
+
+9. If the interrupt is too low, the second thread will loop as it doesn't have the correct value to 
+enter the critical section. Otherwise, it can run in one loop.
+
+10. 
